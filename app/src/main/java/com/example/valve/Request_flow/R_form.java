@@ -11,21 +11,19 @@ import android.view.ViewGroup;
 import com.example.valve.R;
 
 
-public class R_permit extends Fragment {
+public class R_form extends Fragment {
 
 
-    public R_permit() {
-        // Required empty public constructor
+
+    public R_form() {
+
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view= inflater.inflate(R.layout.fragment_r_permit, container, false);
-
+        View view= inflater.inflate(R.layout.fragment_r_form, container, false);
 
 
 

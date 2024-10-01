@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Select Activity"
+                android:text="Select Permit"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -49,19 +49,19 @@
                     android:id="@+id/radio_activity1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Activity 1" />
+                    android:text="Permit 1" />
 
                 <RadioButton
                     android:id="@+id/radio_activity2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Activity 2" />
+                    android:text="Permit 2" />
 
                 <RadioButton
                     android:id="@+id/radio_activity3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Activity 3" />
+                    android:text="Permit 3" />
             </RadioGroup>
 
             <Button

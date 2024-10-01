@@ -22,4 +22,5 @@ public class R_main extends AppCompatActivity { // Change Activity to AppCompatA
         transaction.replace(R.id.fragment_carrier_layout_id, rArea);
         transaction.commit();
     }
+
 }
