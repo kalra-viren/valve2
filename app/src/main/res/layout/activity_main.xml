@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:text="Steel Care"
+            android:text="SMA App"
             android:textSize="55sp" />
 
         <ImageView
@@ -39,7 +39,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TPE" />
+            android:text="SITE USER" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

@@ -37,10 +37,11 @@ public class R_activity extends Fragment {
         next_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                R_sel_permit rSelPermit=new R_sel_permit();
+                R_photos rPhotos=new R_photos();
                 FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                transaction.replace(R.id.fragment_carrier_layout_id,rSelPermit);
+                transaction.replace(R.id.fragment_carrier_layout_id,rPhotos);  //R_sel_permit screen was ommitted and directly photos screen is displayed.
+                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

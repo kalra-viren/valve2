@@ -33,19 +33,19 @@ public class UserCredentials {
     }
 
     // Save user credentials
-    public void saveCredentials(String poNumber, String password, String aicSteNumber, String siteSupervisor) {
+    public void saveCredentials(String poNumber, String password, String aicSteNumber) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_PO_NUMBER, poNumber);
         editor.putString(KEY_PASSWORD, password);
         editor.putString(KEY_AIC_STE_NUMBER, aicSteNumber);
-        editor.putString(KEY_SITE_SUPERVISOR, siteSupervisor);
+
         editor.apply();
 
         credentialsList.clear(); // Clear previous entries if needed
         credentialsList.add(poNumber);
         credentialsList.add(password);
         credentialsList.add(aicSteNumber);
-        credentialsList.add(siteSupervisor);
+
         Log.d(TAG, "First credential: " + credentialsList.get(0));
     }
 

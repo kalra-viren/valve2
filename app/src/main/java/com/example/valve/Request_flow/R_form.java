@@ -1,32 +1,29 @@
 package com.example.valve.Request_flow;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.valve.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
+import com.example.valve.R;
 
 public class R_form extends Fragment {
 
-
-
-    public R_form() {
-
-    }
-
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_r_form, container, false);
 
 
 
-        return view;
+
+
+        return view;// Replace with your actual layout
     }
+
+    // Other methods related to your fragment can be added here
 }

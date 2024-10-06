@@ -38,15 +38,15 @@ public class aic extends Fragment {
                 EditText poNumberField = view.findViewById(R.id.input_field_1);
                 EditText passwordField = view.findViewById(R.id.input_field_2);
                 EditText aicSteNumberField = view.findViewById(R.id.input_field_3);
-                EditText siteSupervisorField = view.findViewById(R.id.input_field_4);
+
 
                 String poNumber = poNumberField.getText().toString();
                 String password = passwordField.getText().toString();
                 String aicSteNumber = aicSteNumberField.getText().toString();
-                String siteSupervisor = siteSupervisorField.getText().toString();
+
 
                 // Save credentials using UserCredentials model
-                UserCredentials.getInstance(getActivity()).saveCredentials(poNumber, password, aicSteNumber, siteSupervisor);
+                UserCredentials.getInstance(getActivity()).saveCredentials(poNumber, password, aicSteNumber);
 
                 // Navigate to Tabs_screen activity
                 navigateToTabsScreen();
