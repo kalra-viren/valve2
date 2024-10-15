@@ -1,16 +1,23 @@
 package com.example.valve.Request_flow;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.valve.Menu.Menu_screen;
 import com.example.valve.R;
 
 
@@ -143,6 +150,56 @@ public class R_form extends Fragment {
         permitData.setFireInputValue4(input15.getText().toString());
         permitData.setFireSpinnerValue5(spinner16.getSelectedItem().toString());
         permitData.setFireInputValue5(input16.getText().toString());
+
+
+        Button submit_btn = view.findViewById(R.id.Submit_btn);
+        submit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create an AlertDialog for submission confirmation
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Submit Permit")
+                        .setMessage("Do you want to submit the permit?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //here call a function which will call an API which will post the data of the
+                                // permit taking it from the model class and store it in the database
+
+
+
+                                // Show success dialog
+                                new AlertDialog.Builder(getActivity())
+                                        .setTitle("Success")
+                                        .setMessage("Permit submitted successfully!")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                // Dismiss the success dialog
+                                                dialog.dismiss();
+                                                Intent intent = new Intent(getActivity(), Menu_screen.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                startActivity(intent);
+
+                                                // Optionally finish this activity if you don't want to return here
+                                                getActivity().finish();
+                                            }
+                                        })
+                                        .setIcon(android.R.drawable.ic_dialog_info) // Optional: Add an icon to the success dialog
+                                        .show(); // Show the success dialog
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Dismiss the confirmation dialog
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert) // Optional: Add an icon to the confirmation dialog
+                        .show(); // Show the confirmation dialog
+            }
+        });
 
 
         return view;

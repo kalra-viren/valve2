@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.example.valve.Approved_flow.A_main;
 import com.example.valve.Login_TPE.UserCredentials2;
 import com.example.valve.R;
 import com.example.valve.Request_flow.R_main;
@@ -29,6 +30,16 @@ public class Menu_screen extends Activity { // Ensure it extends Activity
                 startActivity(intent);
             }
         });
+
+        LinearLayout approval_ll=findViewById(R.id.approval_ll);
+        approval_ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu_screen.this, A_main.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

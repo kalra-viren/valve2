@@ -39,6 +39,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Approved_flow.A_main" />
+
     </application>
 
 </manifest>
