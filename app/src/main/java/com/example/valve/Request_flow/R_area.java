@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +15,78 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.valve.Login_TPE.UserCredentials2;
 import com.example.valve.Login_TPE.tpe;
 import com.example.valve.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class R_area extends Fragment {
     private Switch tpeSwitch;
     private EditText tpeStcInput;
-
+    private Spinner districtSpinner;
 
 
     public R_area() {
         // Required empty public constructor
     }
+
+    private void fetchDistricts() {
+        String url = "http://10.0.2.2:5001/api/Districts/distinct-districts"; // API URL
+//http://ip config:port number/api/districts/distinct-districts
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        List<String> districts = new ArrayList<>();
+                        districts.add("Select District"); // Default selection
+
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                String districtName = response.getString(i); // Get string directly from the array
+                                districts.add(districtName);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        ArrayAdapter<String> districtAdapter = new ArrayAdapter<>(
+                                requireActivity(),
+                                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                                districts
+                        );
+                        districtSpinner.setAdapter(districtAdapter);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Log error details
+                        Log.e("Volley Error", error.toString());
+                    }
+
+                });
+
+        queue.add(jsonArrayRequest);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +95,8 @@ public class R_area extends Fragment {
         View view= inflater.inflate(R.layout.fragment_r_area, container, false);
         UserCredentials2 userCredentials2 = UserCredentials2.getInstance(getActivity());
         String s = userCredentials2.getPoNumber();
-        AppCompatSpinner districtSpinner=view.findViewById(R.id.district_spinner);
+        districtSpinner=view.findViewById(R.id.district_spinner);
+        fetchDistricts();
         AppCompatSpinner numberSpinner = view.findViewById(R.id.number_spinner);
         AppCompatSpinner dicSpinner = view.findViewById(R.id.dic_spinner);
         AppCompatSpinner nameSpinner = view.findViewById(R.id.name_spinner);
@@ -56,10 +113,10 @@ public class R_area extends Fragment {
             }
         });
 
-        String[] districts = {"Select District", "District 1", "District 2", "District 3", "District 4", "District 5"};
-        ArrayAdapter<String> districtAdapter;
-        districtAdapter = new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, districts);
-        districtSpinner.setAdapter(districtAdapter);
+//        String[] districts = {"Select District", "District 1", "District 2", "District 3", "District 4", "District 5"};
+//        ArrayAdapter<String> districtAdapter;
+//        districtAdapter = new ArrayAdapter<>(getActivity(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, districts);
+//        districtSpinner.setAdapter(districtAdapter);
 
 
         String[] name = {"Select Name", "Name 1", "Name 2", "Name 3", "Name 4", "Name 5"};
