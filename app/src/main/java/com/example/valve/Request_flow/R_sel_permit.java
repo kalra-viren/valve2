@@ -36,7 +36,7 @@ public class R_sel_permit extends Fragment {
                 R_photos rPhotos=new R_photos();
                 FragmentTransaction transaction= getParentFragmentManager().beginTransaction();
                 transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                transaction.replace(R.id.fragment_carrier_layout_id,rPhotos);
+                transaction.replace(R.id.fragment_carrier_id_ap,rPhotos);
                 transaction.commit();
             }
         });

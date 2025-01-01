@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         tpe tp=new tpe();
         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.replace(R.id.fragment_carrier_layout_id,tp);
+        transaction.replace(R.id.fragment_carrier_id_ap,tp);
         transaction.commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                         tpe tp=new tpe();
                         FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                        transaction.replace(R.id.fragment_carrier_layout_id,tp);
+                        transaction.replace(R.id.fragment_carrier_id_ap,tp);
                         transaction.commit();
 
                         break;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         aic a=new aic();
                         FragmentTransaction transaction2=getSupportFragmentManager().beginTransaction();
                         transaction2.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                        transaction2.replace(R.id.fragment_carrier_layout_id,a);
+                        transaction2.replace(R.id.fragment_carrier_id_ap,a);
                         transaction2.commit();
                         break;
                     // Add additional cases for more tabs if needed

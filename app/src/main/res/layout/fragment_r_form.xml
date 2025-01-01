@@ -139,7 +139,7 @@
                     android:id="@+id/description_question_heading_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Question 1"
+                    android:text="Description"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -147,13 +147,13 @@
                     android:id="@+id/description_question_text_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="1. Is the team properly trained and qualified to proceed the activity with valid STC card?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/description_spinner_1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPressed" />
 
@@ -163,33 +163,33 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true"
                     android:background="@android:color/white" />
 
-                <TextView
-                    android:id="@+id/description_question_heading_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/description_question_heading_2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 2"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/description_question_text_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="2. Briefed by MGL Site In-charge regarding the job and precaution required and MGL life saver on confined space entry and recorded in Tool Box Talk"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/description_spinner_2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@color/colorPressed" />
 
                 <EditText
                     android:id="@+id/description_input_2"
@@ -197,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true"
@@ -226,7 +226,7 @@
                     android:id="@+id/atmosphere_question_heading_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Question 1"
+                    android:text="Atmosphere/Gas monitoring Equipment (Gascoseeker/02 Meter)"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -234,13 +234,14 @@
                     android:id="@+id/atmosphere_question_text_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="3. Is the Gascoseeker in working condition &amp; within calibration due dates?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/atmosphere_spinner_1"
                     android:layout_width="wrap_content"
+                    android:background="@color/colorPressed"
                     android:layout_height="wrap_content" />
 
                 <EditText
@@ -249,29 +250,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
 
-                <TextView
-                    android:id="@+id/atmosphere_question_heading_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/atmosphere_question_heading_2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 2"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/atmosphere_question_text_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="4. Is the Oxygen meter in working condition &amp; within calibration due dates?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/atmosphere_spinner_2"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -281,7 +283,7 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
@@ -309,7 +311,7 @@
                     android:id="@+id/blower_question_heading_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Question 1"
+                    android:text="Air Blower"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -317,12 +319,13 @@
                     android:id="@+id/blower_question_text_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="5. Is air blower available as per Site HIRA to supply fresh air?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/blower_spinner_1"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -332,29 +335,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
 
-                <TextView
-                    android:id="@+id/blower_question_heading_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/blower_question_heading_2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 2"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/blower_question_text_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="6. Is the lid of valve chamber open &amp; kept open for more than 10 min before entering?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/blower_spinner_2"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -364,42 +368,42 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
 
-                <TextView
-                    android:id="@+id/blower_question_heading_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 3"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/blower_question_heading_3"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 3"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <TextView
-                    android:id="@+id/blower_question_text_3"
-                    android:layout_width ="match_parent"
-                    android:layout_height ="wrap_content"
-                    android:text ="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
-                    android:maxLines ="3"
-                    android:ellipsize ="end"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/blower_question_text_3"-->
+<!--                    android:layout_width ="match_parent"-->
+<!--                    android:layout_height ="wrap_content"-->
+<!--                    android:text ="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."-->
+<!--                    android:maxLines ="3"-->
+<!--                    android:ellipsize ="end"/>-->
 
-                <Spinner
-                    android:id ="@+id/blower_spinner_3"
-                    android:layout_width ="wrap_content"
-                    android:layout_height ="wrap_content"/>
+<!--                <Spinner-->
+<!--                    android:id ="@+id/blower_spinner_3"-->
+<!--                    android:layout_width ="wrap_content"-->
+<!--                    android:layout_height ="wrap_content"/>-->
 
-                <EditText
-                    android:id ="@+id/blower_input_3"
-                    android:layout_width ="match_parent"
-                    android:layout_height ="wrap_content"
-                    android:maxLength ="100"
-                    android:minWidth ="60dp"
-                    android:hint ="Input"
-                    android:inputType ="textNoSuggestions|textMultiLine"
-                    android:maxLines ="1"
-                    android:scrollHorizontally ="true"/>
+<!--                <EditText-->
+<!--                    android:id ="@+id/blower_input_3"-->
+<!--                    android:layout_width ="match_parent"-->
+<!--                    android:layout_height ="wrap_content"-->
+<!--                    android:maxLength ="100"-->
+<!--                    android:minWidth ="60dp"-->
+<!--                    android:hint ="Input"-->
+<!--                    android:inputType ="textNoSuggestions|textMultiLine"-->
+<!--                    android:maxLines ="1"-->
+<!--                    android:scrollHorizontally ="true"/>-->
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -424,7 +428,7 @@
                     android:id="@+id/rescue_question_heading_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Question 1"
+                    android:text="Rescue Equipment"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -432,12 +436,13 @@
                     android:id="@+id/rescue_question_text_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="7. Is ladder/tripod provided for the person entering the confined space?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/rescue_spinner_1"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -447,29 +452,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
 
-                <TextView
-                    android:id="@+id/rescue_question_heading_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/rescue_question_heading_2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 2"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/rescue_question_text_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="8. Is rope or hooks ready to use and in good condition (without knots, oil, amendments, untwisted) for lifting valve chamber covers?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/rescue_spinner_2"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -479,29 +485,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally ="true"/>
 
-                <TextView
-                    android:id ="@+id/rescue_question_heading_3"
-                    android:layout_width ="wrap_content"
-                    android:layout_height ="wrap_content"
-                    android:text ="Question 3"
-                    android:textSize ="16sp"
-                    android:textStyle ="bold"/>
+<!--                <TextView-->
+<!--                    android:id ="@+id/rescue_question_heading_3"-->
+<!--                    android:layout_width ="wrap_content"-->
+<!--                    android:layout_height ="wrap_content"-->
+<!--                    android:text ="Question 3"-->
+<!--                    android:textSize ="16sp"-->
+<!--                    android:textStyle ="bold"/>-->
 
                 <TextView
                     android:id ="@+id/rescue_question_text_3"
                     android:layout_width ="match_parent"
                     android:layout_height ="wrap_content"
-                    android:text ="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text ="9. Is person entering in the confined space weaaring double lanyard full body harness with lifeline attached to permanent structure?"
                     android:maxLines ="3"
                     android:ellipsize ="end"/>
 
                 <Spinner
                     android:id ="@+id/rescue_spinner_3"
+                    android:background="@color/colorPressed"
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"/>
 
@@ -511,29 +518,30 @@
                     android:layout_height ="wrap_content"
                     android:maxLength ="100"
                     android:minWidth ="60dp"
-                    android:hint ="Input"
+                    android:hint ="Remark"
                     android:inputType ="textNoSuggestions|textMultiLine"
                     android:maxLines ="1"
                     android:scrollHorizontally ="true"/>
 
-                <TextView
-                    android:id ="@+id/rescue_question_heading_4"
-                    android:layout_width ="wrap_content"
-                    android:layout_height ="wrap_content"
-                    android:text ="Question 4"
-                    android:textSize ="16sp"
-                    android:textStyle ="bold"/>
+<!--                <TextView-->
+<!--                    android:id ="@+id/rescue_question_heading_4"-->
+<!--                    android:layout_width ="wrap_content"-->
+<!--                    android:layout_height ="wrap_content"-->
+<!--                    android:text ="Question 4"-->
+<!--                    android:textSize ="16sp"-->
+<!--                    android:textStyle ="bold"/>-->
 
                 <TextView
                     android:id ="@+id/rescue_question_text_4"
                     android:layout_width ="match_parent"
                     android:layout_height ="wrap_content"
-                    android:text ="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text ="10. Rescuer must enter in confined space with breathing apparatus or escape set."
                     android:maxLines ="3"
                     android:ellipsize ="end"/>
 
                 <Spinner
                     android:id ="@+id/rescue_spinner_4"
+                    android:background="@color/colorPressed"
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"/>
 
@@ -543,29 +551,30 @@
                     android:layout_height ="wrap_content"
                     android:maxLength ="100"
                     android:minWidth ="60dp"
-                    android:hint ="Input"
+                    android:hint ="Remark"
                     android:inputType ="textNoSuggestions|textMultiLine"
                     android:maxLines ="1"
                     android:scrollHorizontally ="true"/>
 
-                <TextView
-                    android:id ="@+id/rescue_question_heading_5"
-                    android:layout_width ="wrap_content"
-                    android:layout_height ="wrap_content"
-                    android:text ="Question 3"
-                    android:textSize ="16sp"
-                    android:textStyle ="bold"/>
+<!--                <TextView-->
+<!--                    android:id ="@+id/rescue_question_heading_5"-->
+<!--                    android:layout_width ="wrap_content"-->
+<!--                    android:layout_height ="wrap_content"-->
+<!--                    android:text ="Question 3"-->
+<!--                    android:textSize ="16sp"-->
+<!--                    android:textStyle ="bold"/>-->
 
                 <TextView
                     android:id ="@+id/rescue_question_text_5"
                     android:layout_width ="match_parent"
                     android:layout_height ="wrap_content"
-                    android:text ="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text ="11. Is proper trench support i.e. shoring / shuttering / bottom support provided in case of nallah crossing."
                     android:maxLines ="3"
                     android:ellipsize ="end"/>
 
                 <Spinner
                     android:id ="@+id/rescue_spinner_5"
+                    android:background="@color/colorPressed"
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"/>
 
@@ -575,7 +584,7 @@
                     android:layout_height ="wrap_content"
                     android:maxLength ="100"
                     android:minWidth ="60dp"
-                    android:hint ="Input"
+                    android:hint ="Remark"
                     android:inputType ="textNoSuggestions|textMultiLine"
                     android:maxLines ="1"
                     android:scrollHorizontally ="true"/>
@@ -605,7 +614,7 @@
                     android:id="@+id/fire_question_heading_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Question 1"
+                    android:text="Fire Extinguisher / First aid / PPEs / Others"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -613,12 +622,13 @@
                     android:id="@+id/fire_question_text_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="12. Is 10kg DCP fire extinguisher, made available a site is in good condition within all due dates?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/fire_spinner_1"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -628,29 +638,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
 
-                <TextView
-                    android:id="@+id/fire_question_heading_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/fire_question_heading_2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 2"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/fire_question_text_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="13. Is all applicable PPE worn by personnel at site?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/fire_spinner_2"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -660,29 +671,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally ="true"/>
 
-                <TextView
-                    android:id ="@+id/fire_question_heading_3"
-                    android:layout_width ="wrap_content"
-                    android:layout_height ="wrap_content"
-                    android:text ="Question 3"
-                    android:textSize ="16sp"
-                    android:textStyle ="bold"/>
+<!--                <TextView-->
+<!--                    android:id ="@+id/fire_question_heading_3"-->
+<!--                    android:layout_width ="wrap_content"-->
+<!--                    android:layout_height ="wrap_content"-->
+<!--                    android:text ="Question 3"-->
+<!--                    android:textSize ="16sp"-->
+<!--                    android:textStyle ="bold"/>-->
 
                 <TextView
                     android:id ="@+id/fire_question_text_3"
                     android:layout_width ="match_parent"
                     android:layout_height ="wrap_content"
-                    android:text ="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text ="14. Breathing apparatus must be worn by the person entering the confined space if O2 level goes below 18% v/v"
                     android:maxLines ="3"
                     android:ellipsize ="end"/>
 
                 <Spinner
                     android:id ="@+id/fire_spinner_3"
+                    android:background="@color/colorPressed"
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"/>
 
@@ -692,29 +704,30 @@
                     android:layout_height ="wrap_content"
                     android:maxLength ="100"
                     android:minWidth ="60dp"
-                    android:hint ="Input"
+                    android:hint ="Remark"
                     android:inputType ="textNoSuggestions|textMultiLine"
                     android:maxLines ="1"
                     android:scrollHorizontally ="true"/>
 
-                <TextView
-                    android:id="@+id/fire_question_heading_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 4"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/fire_question_heading_4"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 4"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/fire_question_text_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="15. Is the first aid box made available at site with all medicines &amp; list of medicines in it?"
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/fire_spinner_4"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -724,29 +737,30 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />
 
-                <TextView
-                    android:id="@+id/fire_question_heading_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Question 1"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:id="@+id/fire_question_heading_5"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Question 1"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textStyle="bold" />-->
 
                 <TextView
                     android:id="@+id/fire_question_text_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Avid hunter Jake Crosby is thrilled that his nine-year-old daughter Katy shares his love of the outdoors. His wife, Morgan, on the other ha tex."
+                    android:text="16. Cleaning is carried out &amp; proper lighting is provided prior to entry inside confined space."
                     android:maxLines="3"
                     android:ellipsize="end" />
 
                 <Spinner
                     android:id="@+id/fire_spinner_5"
+                    android:background="@color/colorPressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -756,7 +770,7 @@
                     android:layout_height="wrap_content"
                     android:maxLength="100"
                     android:minWidth="60dp"
-                    android:hint="Input"
+                    android:hint="Remark"
                     android:inputType="textNoSuggestions|textMultiLine"
                     android:maxLines="1"
                     android:scrollHorizontally="true" />

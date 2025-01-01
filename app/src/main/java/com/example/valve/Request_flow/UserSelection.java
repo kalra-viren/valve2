@@ -4,8 +4,10 @@ public class UserSelection {
     private static UserSelection instance;
 
     private String selectedDistrict;
+    private String selectedName;
     private String selectedNumber;
     private String selectedDIC;
+    private String TpeName;
 
     // Private constructor to prevent instantiation
     private UserSelection() {}
@@ -25,7 +27,10 @@ public class UserSelection {
     public void setSelectedDistrict(String selectedDistrict) {
         this.selectedDistrict = selectedDistrict;
     }
-
+    public String getSelectedName(){ return selectedName;}
+    public void setSelectedName(String selectedName){
+        this.selectedName=selectedName;
+    }
     public String getSelectedNumber() {
         return selectedNumber;
     }
@@ -40,5 +45,12 @@ public class UserSelection {
 
     public void setSelectedDIC(String selectedDIC) {
         this.selectedDIC = selectedDIC;
+    }
+
+    public void setTpeName(String tpeName){
+        this.TpeName=tpeName;
+    }
+    public String getTpeName(){
+        return TpeName;
     }
 }

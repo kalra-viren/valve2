@@ -20,7 +20,9 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:text="SMA App"
-            android:textSize="55sp" />
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textSize="35sp" />
 
         <ImageView
             android:layout_width="60dp"
@@ -51,15 +53,18 @@
             android:text="Approval Status"
             android:textSize="24sp" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/colorPressed"
-        android:layout_marginTop="4dp" />
-    <LinearLayout
-        android:id="@+id/fragment_carrier_layout_id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-    </LinearLayout>
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPressed" />
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/fragment_carrier_id_ap"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="horizontal"/>-->
+
+
+    <include layout="@layout/fragmet_carrier" />
 </LinearLayout>

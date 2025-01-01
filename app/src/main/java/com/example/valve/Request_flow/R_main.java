@@ -23,7 +23,7 @@ public class R_main extends AppCompatActivity {
         R_area rArea = new R_area();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        transaction.replace(R.id.fragment_carrier_layout_id, rArea);
+        transaction.replace(R.id.fragment_carrier_id_ap, rArea);
         transaction.commit();
 
         // Set up OnBackPressedCallback

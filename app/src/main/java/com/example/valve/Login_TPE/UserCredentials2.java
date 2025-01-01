@@ -12,14 +12,14 @@ public class UserCredentials2 {
     private static final String PREFS_NAME = "UserCredentials2Prefs";
     private static final String KEY_PO_NUMBER = "po_number";
     private static final String KEY_PASSWORD = "password";
-    private static final String KEY_AIC_STE_NUMBER = "aic_ste_number";
+    private static final String KEY_STC_NUMBER = "stc_number";
     private static final String KEY_SITE_SUPERVISOR = "site_supervisor";
     private static final String TAG = "UserCredentials2";
     private SharedPreferences sharedPreferences;
     private List<String> credentialsList;
 
     // Private constructor to prevent instantiation
-    private UserCredentials2(Context context) {
+    UserCredentials2(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         credentialsList = new ArrayList<>();
     }
@@ -33,18 +33,18 @@ public class UserCredentials2 {
     }
 
     // Save user credentials
-    public void saveCredentials(String poNumber, String password, String aicSteNumber) {
+    public void saveCredentials(String poNumber, String password, String stcNo) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(KEY_PO_NUMBER, poNumber);
         editor.putString(KEY_PASSWORD, password);
-        editor.putString(KEY_AIC_STE_NUMBER, aicSteNumber);
+        editor.putString(KEY_STC_NUMBER, stcNo);
 
         editor.apply();
 
         credentialsList.clear(); // Clear previous entries if needed
         credentialsList.add(poNumber);
         credentialsList.add(password);
-        credentialsList.add(aicSteNumber);
+        credentialsList.add(stcNo);
 
     }
 
@@ -57,8 +57,8 @@ public class UserCredentials2 {
         return sharedPreferences.getString(KEY_PASSWORD, null);
     }
 
-    public String getAicSteNumber() {
-        return sharedPreferences.getString(KEY_AIC_STE_NUMBER, null);
+    public String getStcNo() {
+        return sharedPreferences.getString(KEY_STC_NUMBER, null);
     }
 
 

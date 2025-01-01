@@ -3,4 +3,8 @@
     <style name="MyCustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">25sp</item> <!-- Adjust the size as needed -->
     </style>
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

@@ -3,7 +3,7 @@ package com.example.valve;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.valve.Login_AIC.UserCredentials;
+//import com.example.valve.Login_AIC.UserCredentials;
 import com.example.valve.Login_TPE.UserCredentials2;
 
 import java.util.List;
@@ -15,10 +15,10 @@ public class Tabs_screen extends AppCompatActivity {
         setContentView(R.layout.tabs_screen);
 
         TextView credentialsTextView = findViewById(R.id.credentials_text_view);
-        UserCredentials userCredentials = UserCredentials.getInstance(this);
+//        UserCredentials userCredentials = UserCredentials.getInstance(this);
         UserCredentials2 userCredentials2=UserCredentials2.getInstance(this);
         List<String> credentialsList2=userCredentials2.getCredentialsList();
-        List<String> credentialsList = userCredentials.getCredentialsList();
+//        List<String> credentialsList = userCredentials.getCredentialsList();
 
         // Check if the list is null or empty
         if (credentialsList2 == null || credentialsList2.isEmpty()) {

@@ -17,7 +17,7 @@ public class A_main extends AppCompatActivity {
         if (savedInstanceState == null) {
             A_ticket aTicket = new A_ticket();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_carrier_layout_id, aTicket);
+            transaction.replace(R.id.fragment_carrier_id_ap, aTicket);
             transaction.commit();
         }
     }

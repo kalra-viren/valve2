@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Approved_flow.A_RejectedTicket"
+    android:padding="16dp">
+
+    <!-- Title for Reject Message -->
+    <TextView
+        android:id="@+id/reject_message_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reject Message:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- TextView to display the reject_ref_msg -->
+    <TextView
+        android:id="@+id/reject_message_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:textSize="16sp"
+        android:layout_below="@id/reject_message_title"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"/>
+
+</RelativeLayout>

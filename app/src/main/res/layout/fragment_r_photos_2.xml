@@ -1,0 +1,214 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/request_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp"
+        android:padding="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/photo_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Upload Photos 2"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:layout_marginTop="16dp"
+                android:columnCount="3"
+                android:rowCount="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/photo_field5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/photo_box_background"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/hint_text5"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="#80FFFFFF"
+                        android:gravity="center"
+                        android:text="Tap to upload additional photo."
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/photo_field1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/photo_box_background"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/hint_text1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="#80FFFFFF"
+                        android:gravity="center"
+                        android:text="Tap to upload top photo."
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/photo_field2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/photo_box_background"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/hint_text2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="#80FFFFFF"
+                        android:gravity="center"
+                        android:text="Tap to upload middle photo."
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/photo_field3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/photo_box_background"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/hint_text3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="#80FFFFFF"
+                        android:gravity="center"
+                        android:text="Tap to upload bottom left photo."
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/photo_field4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/photo_box_background"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/hint_text4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="#80FFFFFF"
+                        android:gravity="center"
+                        android:text="Tap to upload bottom right photo."
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/photo_field6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/photo_box_background"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        android:id="@+id/hint_text6"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerInParent="true"
+                        android:background="#80FFFFFF"
+                        android:gravity="center"
+                        android:text="Tap to upload additional photo."
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+            </GridLayout>
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Submit"
+                app:tint="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.core.widget.NestedScrollView>
+

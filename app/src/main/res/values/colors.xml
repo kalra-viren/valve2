@@ -4,4 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="colorPressed">#cccccc</color>
     <color name="colorNormal">#FFFFFFFF</color>
+    <color name="green_approval">#6CC370</color>
+    <color name="blue_requested">#34A4D7</color>
+    <color name="red_rejected">#BD5B54</color>
+    <color name="pale_blue">#ADD8E6</color>
 </resources>
