@@ -76,24 +76,32 @@
                                 android:layout_margin="8dp"
                                 android:layout_weight="1">
 
-                                <ImageView
+                                <com.jsibbold.zoomage.ZoomageView
                                     android:id="@+id/Gascoseeker"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    app:zoomage_autoCenter="true"
+                                    app:zoomage_zoomable="true" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarGascoseeker"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text1"
                                     android:layout_width="match_parent"
-                                    android:visibility="gone"
                                     android:layout_height="match_parent"
                                     android:background="#80FFFFFF"
                                     android:gravity="center"
                                     android:text="Gascoseeker , O2 Meter, First Aid Box"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="gone" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -102,24 +110,32 @@
                                 android:layout_margin="8dp"
                                 android:layout_weight="1">
 
-                                <ImageView
+                                <com.jsibbold.zoomage.ZoomageView
                                     android:id="@+id/Hira"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    app:zoomage_autoCenter="true"
+                                    app:zoomage_zoomable="true" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarHira"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:visibility="gone"
                                     android:background="#80FFFFFF"
                                     android:gravity="center"
                                     android:text="Hira Documents"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="gone" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -128,24 +144,32 @@
                                 android:layout_margin="8dp"
                                 android:layout_weight="1">
 
-                                <ImageView
+                                <com.jsibbold.zoomage.ZoomageView
                                     android:id="@+id/Tool"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    app:zoomage_autoCenter="true"
+                                    app:zoomage_zoomable="true" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarTool"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:visibility="gone"
                                     android:background="#80FFFFFF"
                                     android:gravity="center"
                                     android:text="Tool Box Talk (TBT)"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="gone" />
                             </RelativeLayout>
                         </LinearLayout>
 
@@ -162,24 +186,32 @@
                                 android:layout_margin="8dp"
                                 android:layout_weight="1">
 
-                                <ImageView
+                                <com.jsibbold.zoomage.ZoomageView
                                     android:id="@+id/STC"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    app:zoomage_autoCenter="true"
+                                    app:zoomage_zoomable="true" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarSTC"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:visibility="gone"
                                     android:background="#80FFFFFF"
                                     android:gravity="center"
                                     android:text="STC Card of Manpower"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="gone" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -188,24 +220,32 @@
                                 android:layout_margin="8dp"
                                 android:layout_weight="1">
 
-                                <ImageView
+                                <com.jsibbold.zoomage.ZoomageView
                                     android:id="@+id/Technician"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    app:zoomage_autoCenter="true"
+                                    app:zoomage_zoomable="true" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarTechnician"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text5"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="#80FFFFFF"
-                                    android:visibility="gone"
                                     android:gravity="center"
                                     android:text="Technician "
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="gone" />
                             </RelativeLayout>
 
                             <RelativeLayout
@@ -214,24 +254,32 @@
                                 android:layout_margin="8dp"
                                 android:layout_weight="1">
 
-                                <ImageView
+                                <com.jsibbold.zoomage.ZoomageView
                                     android:id="@+id/Emergency"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    app:zoomage_autoCenter="true"
+                                    app:zoomage_zoomable="true" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarEmergency"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text6"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="#80FFFFFF"
-                                    android:visibility="gone"
                                     android:gravity="center"
                                     android:text="Emergency Rescue Plan"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="gone" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>

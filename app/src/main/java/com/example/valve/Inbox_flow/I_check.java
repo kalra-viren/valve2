@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+
 import com.jsibbold.zoomage.ZoomageView;
 
 import android.content.Context;
@@ -26,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -66,33 +68,30 @@ public class I_check extends Fragment {
     private Button view_permit;
 
 
-
     public I_check() {
         // Required empty public constructor
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_i_check, container, false);
+        View view = inflater.inflate(R.layout.fragment_i_check, container, false);
         Bundle args = getArguments();
         if (args != null) {
             id = args.getInt("id");
             // Use the received integer as needed
             Log.d("A_TicketApproved", "Received integer: " + id);
         }
-        approve=view.findViewById(R.id.Approve_btn);
-        reject=view.findViewById(R.id.Reject_btn);
-        LinearLayout inp=view.findViewById(R.id.Reject_inp_ll);
-        submit=view.findViewById(R.id.submit_btn);
-        view_permit=view.findViewById(R.id.view_permit_btn);
+        approve = view.findViewById(R.id.Approve_btn);
+        reject = view.findViewById(R.id.Reject_btn);
+        LinearLayout inp = view.findViewById(R.id.Reject_inp_ll);
+        submit = view.findViewById(R.id.submit_btn);
+        view_permit = view.findViewById(R.id.view_permit_btn);
 
 
-
-        fetchImagePaths(id,getContext(),view);
+        fetchImagePaths(id, getContext(), view);
 
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +127,6 @@ public class I_check extends Fragment {
                         .show();
             }
         });
-
 
 
         reject.setOnClickListener(new View.OnClickListener() {
@@ -273,7 +271,10 @@ public class I_check extends Fragment {
             // Find the ImageView by ID
             int imageViewId = getResources().getIdentifier(key, "id", requireActivity().getPackageName());
 //            ImageView imageView = view.findViewById(imageViewId);
-            ZoomageView imageView=view.findViewById(imageViewId);
+            ZoomageView imageView = view.findViewById(imageViewId);
+            int progressBarId = getResources().getIdentifier("progressBar" + key, "id", requireActivity().getPackageName());
+            ProgressBar progressBar = view.findViewById(progressBarId);
+            imageView.setOnClickListener(v -> showImageInDialog(imageView));
             if (imageView != null) {
                 // Make a Volley request to fetch the image
                 ImageRequest imageRequest = new ImageRequest(
@@ -283,11 +284,13 @@ public class I_check extends Fragment {
                             Glide.with(imageView.getContext())
                                     .load(apiUrl)
                                     .into(imageView);
+                            progressBar.setVisibility(View.GONE);
                         },
                         0, 0, ImageView.ScaleType.CENTER_CROP,
                         Bitmap.Config.RGB_565,
                         error -> {
                             // Handle Volley error
+                            progressBar.setVisibility(View.GONE);
                             Log.e("ImageLoadError", "Failed to load image: " + error.getMessage());
                         }
                 );
@@ -298,6 +301,28 @@ public class I_check extends Fragment {
                 Log.e("ImageViewError", "No ImageView found for key: " + key);
             }
         }
+    }
+
+    private void showImageInDialog(ZoomageView imageView) {
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View dialogView = inflater.inflate(R.layout.dialog_zoomable_image, null);
+
+        // Find the ZoomageView in the dialog layout
+        ZoomageView dialogImageView = dialogView.findViewById(R.id.zoomable_dialog_image);
+
+        // Set the same image from your original ZoomageView
+        dialogImageView.setImageDrawable(imageView.getDrawable());
+
+        // Build the dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(dialogView)
+                .setCancelable(true) // Allow dismiss by tapping outside
+                .setPositiveButton("Close", (dialog, which) -> dialog.dismiss());
+
+        // Show the dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void openZoomDialog(Bitmap image) {
@@ -355,7 +380,6 @@ public class I_check extends Fragment {
     }
 
 
-
     private void updateTicketStatus(int ticketId) {
         String url = APIS_URLs.updateTicketStatus_url; // Replace with your API URL
 
@@ -387,7 +411,7 @@ public class I_check extends Fragment {
         queue.add(request);
     }
 
-    private void updateTicketStatus_r(int ticketId,String s) {
+    private void updateTicketStatus_r(int ticketId, String s) {
         String url = APIS_URLs.updateTicketStatus_url; // Replace with your API URL
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -396,7 +420,7 @@ public class I_check extends Fragment {
         try {
             jsonBody.put("id", ticketId);
             jsonBody.put("status", "REJECTED");
-            jsonBody.put("reject_ref_msg",s);
+            jsonBody.put("reject_ref_msg", s);
         } catch (JSONException e) {
             e.printStackTrace();
         }

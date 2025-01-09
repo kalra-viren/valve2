@@ -51,6 +51,9 @@ dependencies {
     implementation libs.glide.v4142 // Use the latest version
     annotationProcessor libs.compiler.v4142
     implementation libs.zoomage
+    implementation libs.security.crypto
+
+
 
 
 }

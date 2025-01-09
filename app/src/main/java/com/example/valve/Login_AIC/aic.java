@@ -6,10 +6,15 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,9 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -41,10 +48,14 @@ import com.example.valve.Util.APIS_URLs;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class aic extends Fragment {
+    private SharedPreferences encryptedSharedPreferences;
+    private CheckBox rememberMeCheckBox;
 
     public aic() {
         // Required empty public constructor
@@ -62,6 +73,21 @@ public class aic extends Fragment {
         EditText user_id = view.findViewById(R.id.input_field_2);
         EditText pass = view.findViewById(R.id.input_field_3);
         ImageView togglePassword = view.findViewById(R.id.toggle_password_visibility);
+
+        try {
+            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+
+            encryptedSharedPreferences = EncryptedSharedPreferences.create(
+                    "user_credentials",  // SharedPreferences file name
+                    masterKeyAlias,      // Master key for encryption
+                    getActivity(),                // Context
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
+        prefillCredentials(view);
         @SuppressLint("ClickableViewAccessibility")
         FrameLayout fl = view.findViewById(R.id.root_layout);
         fl.setOnTouchListener((v, event) -> {
@@ -83,6 +109,7 @@ public class aic extends Fragment {
             }
             pass.setSelection(pass.getText().length()); // Keep cursor at the end
         });
+        rememberMeCheckBox = view.findViewById(R.id.remember_me_checkbox);
 
 
         // Set click listener for the submit button
@@ -116,6 +143,7 @@ public class aic extends Fragment {
 
         return view;
     }
+
     private void hideKeyboard() {
         View view = requireActivity().getCurrentFocus(); // Get the current focused view
         if (view != null) {
@@ -128,6 +156,8 @@ public class aic extends Fragment {
 
 
     private void validateCredentials(String empid, String userid, String pass) {
+        ProgressBar progressBar = getView().findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
         String url = APIS_URLs.validateCredentials_url; //My api url
 
         JSONObject jsonBody = new JSONObject();
@@ -136,15 +166,16 @@ public class aic extends Fragment {
             jsonBody.put("userId", userid);
             jsonBody.put("password", pass);
         } catch (JSONException e) {
+            progressBar.setVisibility(View.GONE);
             e.printStackTrace();
         }
-
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        progressBar.setVisibility(View.GONE);
                         try {
                             String isValid = response.getString("valid"); // Adjust according to your API's JSON structure
                             if ("yes".equals(isValid.trim())) {
@@ -152,6 +183,19 @@ public class aic extends Fragment {
                                 Log.i("API Response", "Credentials are valid");
                                 UserCredentials userCredentials = UserCredentials.getInstance(getActivity());
                                 userCredentials.saveCredentials(empid, userid, pass);
+
+                                if (rememberMeCheckBox.isChecked()) {
+                                    // Save credentials securely
+                                    encryptedSharedPreferences.edit()
+                                            .putString("emp_id", empid)
+                                            .putString("user_id", userid)
+                                            .putString("pass", pass)
+                                            .apply();
+                                } else {
+                                    // Clear saved credentials if "Remember Password" is unchecked
+                                    encryptedSharedPreferences.edit().clear().apply();
+                                }
+
                                 navigateToTabsScreen();
                             } else {
                                 Toast.makeText(getActivity(), "Invalid credentials", Toast.LENGTH_SHORT).show();
@@ -167,6 +211,7 @@ public class aic extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         String errorMessage = "An error occurred";
                         if (error.networkResponse != null) {
                             errorMessage = "Error Code: " + error.networkResponse.statusCode;
@@ -195,6 +240,23 @@ public class aic extends Fragment {
         // Create an intent to start the Tabs_screen activity
         Intent intent = new Intent(getActivity(), Dic_menu_screen.class);
         startActivity(intent);
+    }
+
+    private void prefillCredentials(View view) {
+        String savedEmpid = encryptedSharedPreferences.getString("emp_id", null);
+        String savedUserid = encryptedSharedPreferences.getString("user_id", null);
+        String savedPass = encryptedSharedPreferences.getString("pass", null);
+
+        if (savedEmpid != null && savedUserid != null && savedPass != null) {
+            // Prefill the EditText fields
+            EditText savedEmpId_ = view.findViewById(R.id.input_field_1);
+            EditText savedUserid_ = view.findViewById(R.id.input_field_2);
+            EditText savedPass_ = view.findViewById(R.id.input_field_3);
+
+            savedEmpId_.setText(savedEmpid);
+            savedUserid_.setText(savedUserid);
+            savedPass_.setText(savedPass);
+        }
     }
 
 }

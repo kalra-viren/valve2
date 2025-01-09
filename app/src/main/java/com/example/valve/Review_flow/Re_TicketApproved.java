@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,6 +39,7 @@ import com.example.valve.Menu.Dic_menu_screen;
 import com.example.valve.R;
 import com.example.valve.Util.APIS_URLs;
 import com.google.android.material.textfield.TextInputEditText;
+import com.jsibbold.zoomage.ZoomageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +57,7 @@ public class Re_TicketApproved extends Fragment {
     private Button submit;
     private Button permit;
     private Map<String, String> imagePaths;
+
 
 
     public Re_TicketApproved() {
@@ -223,72 +226,7 @@ public class Re_TicketApproved extends Fragment {
         requestQueue.add(jsonObjectRequest);
     }
 
-//    private void fetchAndDisplayImages(Map<String, String> map, View view) {
-//        // Prepare the list of file paths (values from your map)
-//        List<String> filePaths = new ArrayList<>(map.values());
-//
-//        // Create a JSON Array from the file paths
-//        JSONArray jsonArray = new JSONArray(filePaths);
-//
-//        // Prepare the API URL
-//        String apiUrl = APIS_URLs.ImageUplaod_url;
-//
-//        // Create a JSON request
-//        JsonObjectRequest jsonRequest = new JsonObjectRequest(
-//                Request.Method.POST,
-//                apiUrl,
-//                null,
-//                response -> {
-//                    try {
-//                        // Loop through the map to display images in their respective ImageViews
-//                        for (Map.Entry<String, String> entry : map.entrySet()) {
-//                            String key = entry.getKey(); // ImageView ID
-//                            String filePath = entry.getValue(); // File path
-//
-//                            // Find the ImageView by ID
-//                            int imageViewId = view.getResources().getIdentifier(key, "id", requireContext().getPackageName());
-//                            ImageView imageView = getView().findViewById(imageViewId);
-//
-//                            // Get the base64 image string from the API response
-//                            String base64Image = response.optString(filePath);
-//
-//                            if (base64Image != null && !base64Image.isEmpty()) {
-//                                // Decode base64 string to bitmap
-//                                byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
-//                                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-//
-//                                // Set the bitmap to the ImageView
-//                                imageView.setImageBitmap(decodedBitmap);
-//
-//                                // Add click listener to open the zoom dialog
-//                                imageView.setOnClickListener(v -> openZoomDialog(decodedBitmap));
-//                            } else {
-//                                Log.e("ImageError", "Image not found for filePath: " + filePath);
-//                            }
-//                        }
-//                    } catch (Exception e) {
-//                        Log.e("ResponseError", "Error processing API response: " + e.getMessage());
-//                    }
-//                },
-//                error -> {
-//                    // Handle Volley error
-//                    Log.e("APIError", "Failed to fetch images: " + error.getMessage());
-//                }
-//        ) {
-//            @Override
-//            public byte[] getBody() {
-//                return jsonArray.toString().getBytes(StandardCharsets.UTF_8);
-//            }
-//
-//            @Override
-//            public String getBodyContentType() {
-//                return "application/json; charset=utf-8";
-//            }
-//        };
-//
-//        // Add the request to the Volley queue
-//        Volley.newRequestQueue(requireContext()).add(jsonRequest);
-//    }
+
 
     private void openZoomDialog(Bitmap image) {
         // Create the fullscreen dialog
@@ -353,9 +291,14 @@ public class Re_TicketApproved extends Fragment {
 
             // Find the ImageView by ID
             int imageViewId = getResources().getIdentifier(key, "id", requireActivity().getPackageName());
-            ImageView imageView = view.findViewById(imageViewId);
+//            ImageView imageView = view.findViewById(imageViewId);
+            ZoomageView imageView=view.findViewById(imageViewId);
+            int progressBarId = getResources().getIdentifier("progressBar" + key, "id", requireActivity().getPackageName());
+            ProgressBar progressBar = view.findViewById(progressBarId);
+            imageView.setOnClickListener(v -> showImageInDialog(imageView));
+            if (imageView != null && progressBar != null) {
+                progressBar.setVisibility(View.VISIBLE);
 
-            if (imageView != null) {
                 // Make a Volley request to fetch the image
                 ImageRequest imageRequest = new ImageRequest(
                         apiUrl,
@@ -364,12 +307,15 @@ public class Re_TicketApproved extends Fragment {
                             Glide.with(imageView.getContext())
                                     .load(apiUrl).diskCacheStrategy(DiskCacheStrategy.ALL)
                                     .into(imageView);
+                            progressBar.setVisibility(View.GONE);
                         },
                         0, 0, ImageView.ScaleType.CENTER_CROP,
                         Bitmap.Config.RGB_565,
                         error -> {
                             // Handle Volley error
                             Log.e("ImageLoadError", "Failed to load image: " + error.getMessage());
+                            progressBar.setVisibility(View.GONE);
+
                         }
                 );
 
@@ -379,6 +325,27 @@ public class Re_TicketApproved extends Fragment {
                 Log.e("ImageViewError", "No ImageView found for key: " + key);
             }
         }
+    }
+    private void showImageInDialog(ZoomageView imageView) {
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View dialogView = inflater.inflate(R.layout.dialog_zoomable_image, null);
+
+        // Find the ZoomageView in the dialog layout
+        ZoomageView dialogImageView = dialogView.findViewById(R.id.zoomable_dialog_image);
+
+        // Set the same image from your original ZoomageView
+        dialogImageView.setImageDrawable(imageView.getDrawable());
+
+        // Build the dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(dialogView)
+                .setCancelable(true) // Allow dismiss by tapping outside
+                .setPositiveButton("Close", (dialog, which) -> dialog.dismiss());
+
+        // Show the dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

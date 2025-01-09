@@ -2,8 +2,12 @@ package com.example.valve.Login_TPE;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+import androidx.security.crypto.EncryptedSharedPreferences;
+import androidx.security.crypto.MasterKeys;
 
 import android.text.InputType;
 import android.text.TextUtils;
@@ -14,9 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,10 +41,15 @@ import com.example.valve.Util.APIS_URLs;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class tpe extends Fragment {
+    private SharedPreferences encryptedSharedPreferences;
+    private CheckBox rememberMeCheckBox;
+
 
     public tpe() {
         // Required empty public constructor
@@ -56,6 +67,22 @@ public class tpe extends Fragment {
         EditText aicSteNumberField = view.findViewById(R.id.input_field_3);
         ImageView togglePassword = view.findViewById(R.id.toggle_password_visibility);
 
+        try {
+            String masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC);
+
+            encryptedSharedPreferences = EncryptedSharedPreferences.create(
+                    "user_credentials",  // SharedPreferences file name
+                    masterKeyAlias,      // Master key for encryption
+                    getActivity(),                // Context
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
+
+        // Call the prefill method to populate fields if credentials are saved
+        prefillCredentials(view);
         @SuppressLint("ClickableViewAccessibility")
         FrameLayout fl = view.findViewById(R.id.root_layout);
         fl.setOnTouchListener((v, event) -> {
@@ -76,6 +103,8 @@ public class tpe extends Fragment {
             }
             pass.setSelection(pass.getText().length()); // Keep cursor at the end
         });
+        rememberMeCheckBox = view.findViewById(R.id.remember_me_checkbox);
+
 
         // Set click listener for the submit button
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +117,7 @@ public class tpe extends Fragment {
                 String password = pass.getText().toString();
                 String aicSteNumber = aicSteNumberField.getText().toString();
 
+
                 // Validate inputs (optional)
                 if (TextUtils.isEmpty(poNumber) || TextUtils.isEmpty(password) || TextUtils.isEmpty(aicSteNumber)) {
                     Toast.makeText(getActivity(), "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -98,6 +128,9 @@ public class tpe extends Fragment {
 
 //                Commet below line to remove the bypass
 //                navigateToTabsScreen();
+
+
+
                 validateCredentials(poNumber, password, aicSteNumber);
 
 
@@ -107,6 +140,8 @@ public class tpe extends Fragment {
     }
 
     private void validateCredentials(String poNumber, String password, String stcNo) {
+        ProgressBar progressBar = getView().findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
         String url = APIS_URLs.validateCredentials_url_tpe;
 
         JSONObject jsonBody = new JSONObject();
@@ -124,13 +159,30 @@ public class tpe extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        progressBar.setVisibility(View.GONE);
                         try {
                             String isValid = response.getString("valid"); // Adjust according to your API's JSON structure
                             if ("yes".equals(isValid.trim())) {
                                 Toast.makeText(getActivity(), "Credentials are valid", Toast.LENGTH_SHORT).show();
                                 Log.i("API Response", "Credentials are valid");
+
+
+
                                 UserCredentials2 userCredentials = UserCredentials2.getInstance(getActivity());
                                 userCredentials.saveCredentials(poNumber, password, stcNo);
+
+                                if (rememberMeCheckBox.isChecked()) {
+                                    // Save credentials securely
+                                    encryptedSharedPreferences.edit()
+                                            .putString("po_number", poNumber)
+                                            .putString("password", password)
+                                            .putString("stc_number", stcNo)
+                                            .apply();
+                                } else {
+                                    // Clear saved credentials if "Remember Password" is unchecked
+                                    encryptedSharedPreferences.edit().clear().apply();
+                                }
+
                                 navigateToTabsScreen();
                             } else {
                                 Toast.makeText(getActivity(), "Invalid credentials", Toast.LENGTH_SHORT).show();
@@ -146,6 +198,7 @@ public class tpe extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         String errorMessage = "An error occurred";
                         if (error.networkResponse != null) {
                             errorMessage = "Error Code: " + error.networkResponse.statusCode;
@@ -184,4 +237,22 @@ public class tpe extends Fragment {
         Intent intent = new Intent(getActivity(), Select_Activity.class);
         startActivity(intent);
     }
+
+    private void prefillCredentials(View view) {
+        String savedPO = encryptedSharedPreferences.getString("po_number", null);
+        String savedPassword = encryptedSharedPreferences.getString("password", null);
+        String savedSTC = encryptedSharedPreferences.getString("stc_number", null);
+
+        if (savedPO != null && savedPassword != null && savedSTC != null) {
+            // Prefill the EditText fields
+            EditText poField = view.findViewById(R.id.input_field_1);
+            EditText passwordField = view.findViewById(R.id.input_field_2);
+            EditText stcField = view.findViewById(R.id.input_field_3);
+
+            poField.setText(savedPO);
+            passwordField.setText(savedPassword);
+            stcField.setText(savedSTC);
+        }
+    }
+
 }

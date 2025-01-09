@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +42,7 @@ public class I_ticket extends Fragment {
     private LinearLayout noTicketsLayout;
 
 
+
     public I_ticket() {
         // Required empty public constructor
     }
@@ -54,18 +56,20 @@ public class I_ticket extends Fragment {
         ticketListView = view.findViewById(R.id.ticket_list_view);
         noTicketsLayout = view.findViewById(R.id.no_tickets_layout);
         ticketList = new ArrayList<>();
+        ProgressBar progressBar=view.findViewById(R.id.progress_bar);
 
         // Set up the adapter
         ticketAdapter = new TicketAdapter(getActivity(), ticketList, getParentFragmentManager());
         ticketListView.setAdapter(ticketAdapter);
 
         // Fetch tickets (this is where you would call your API)
-        fetchTickets();
+        fetchTickets(progressBar);
 
         return view;
     }
 
-    private void fetchTickets() {
+    private void fetchTickets(ProgressBar progressBar) {
+        progressBar.setVisibility(View.VISIBLE);
         UserCredentials userCredentials = UserCredentials.getInstance(getActivity());
 
         String empId = userCredentials.getKeyEmployeeId(); // Replace with actual STC number if needed
@@ -77,6 +81,8 @@ public class I_ticket extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        progressBar.setVisibility(View.GONE);
+                        ticketListView.setVisibility(View.VISIBLE);
                         ticketList.clear(); // Clear any existing data
                         if (response.length() == 0) {
                             ticketListView.setVisibility(View.GONE);
@@ -151,6 +157,11 @@ public class I_ticket extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
+//                        ticketListView.setVisibility(View.VISIBLE);
+                        ticketListView.setVisibility(View.GONE);
+                        noTicketsLayout.setVisibility(View.VISIBLE);
+
                         error.printStackTrace();
                         // You can display an error message here if needed
                     }

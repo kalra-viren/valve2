@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +16,8 @@ import com.example.valve.Util.APIS_URLs;
 
 public class I_ViewPermit extends Fragment {
     private int id;
+    private ProgressBar progressBar;
+
 
     public I_ViewPermit() {
         // Required empty public constructor
@@ -24,6 +27,7 @@ public class I_ViewPermit extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_i_view_permit, container, false);
+        progressBar = view.findViewById(R.id.progress_bar);
         WebView webView = view.findViewById(R.id.view_permit);
         if (getArguments() != null) {
             id = getArguments().getInt("id"); // Use getString() or getDouble() if id is of different type
@@ -44,6 +48,20 @@ public class I_ViewPermit extends Fragment {
         // Load the URL
 //        String url = "https://mgltest.mahanagargas.com/ApprovalTicketsWeb/CSEPermit.aspx?id="+id;
         String url = APIS_URLs.permit_url+id;
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                progressBar.setVisibility(View.VISIBLE); // Show progress bar
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressBar.setVisibility(View.GONE); // Hide progress bar
+            }
+        });
+
         webView.loadUrl(url);
 
         return view;

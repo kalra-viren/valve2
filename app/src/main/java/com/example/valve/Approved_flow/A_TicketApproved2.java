@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -186,6 +187,8 @@ public class A_TicketApproved2 extends Fragment {
         String url = APIS_URLs.updateTicketStatus_url_approved; // Replace with your API URL
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
+        ProgressBar progressBar = getView().findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
 
         JSONObject jsonBody = new JSONObject();
         try {
@@ -201,10 +204,12 @@ public class A_TicketApproved2 extends Fragment {
                 jsonBody,
                 response -> {
                     // Handle successful response
+                    progressBar.setVisibility(View.GONE);
                     Log.d("API Response", "Ticket status updated successfully: " + response.toString());
                 },
                 error -> {
                     // Handle error
+                    progressBar.setVisibility(View.GONE);
                     error.printStackTrace();
                     Log.e("API Error", "Failed to update ticket status");
                 }
@@ -286,12 +291,13 @@ public class A_TicketApproved2 extends Fragment {
 
     private void uploadBitmap() {
         String url = APIS_URLs.uploadBitmap_url;
+        ProgressBar progressBar = getView().findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
 
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
                 response -> {
+                    progressBar.setVisibility(View.GONE);
                     try {
-
-
                         JSONObject pathsArray = new JSONObject(new String(response.data));
                         // Get the 'paths' array from the JSON response
 //                        JSONArray pathsArray = obj.getJSONArray("paths");
@@ -330,6 +336,8 @@ public class A_TicketApproved2 extends Fragment {
                     }
                 },
                 error -> {
+                    progressBar.setVisibility(View.GONE);
+
                     Log.e("GotError", "Error: " + error.toString());
                     if (error.networkResponse != null) {
                         Log.e("GotError", "Response code: " + error.networkResponse.statusCode);

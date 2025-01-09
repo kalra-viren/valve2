@@ -84,6 +84,12 @@
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
                                     android:scaleType="centerCrop" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarGascoseeker"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text1"
@@ -113,6 +119,12 @@
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
                                     android:scaleType="centerCrop" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarHira"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text2"
@@ -142,6 +154,12 @@
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
                                     android:scaleType="centerCrop" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarTool"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text3"
@@ -179,6 +197,12 @@
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
                                     android:scaleType="centerCrop" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarSTC"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text4"
@@ -208,6 +232,12 @@
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
                                     android:scaleType="centerCrop" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarTechnician"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text5"
@@ -237,6 +267,12 @@
                                     android:layout_height="match_parent"
                                     android:background="@drawable/photo_box_background"
                                     android:scaleType="centerCrop" />
+                                <ProgressBar
+                                    android:id="@+id/progressBarEmergency"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerInParent="true"
+                                    android:visibility="gone" />
 
                                 <TextView
                                     android:id="@+id/hint_text6"

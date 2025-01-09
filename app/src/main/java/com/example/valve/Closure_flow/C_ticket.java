@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +36,8 @@ public class C_ticket extends Fragment {
     private TicketAdapter ticketAdapter;
     private List<Ticket> ticketList; // List to hold tickets
     private View view;
+    private ProgressBar progressBar;
+    private LinearLayout noTicketsLayout;
 
     public C_ticket() {
         // Required empty public constructor
@@ -44,9 +48,10 @@ public class C_ticket extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_c_ticket, container, false);
-
+        progressBar=view.findViewById(R.id.progress_bar);
         // Initialize ListView and Ticket list
         ticketListView = view.findViewById(R.id.ticket_list_view);
+        noTicketsLayout = view.findViewById(R.id.no_tickets_layout);
         ticketList = new ArrayList<>();
 
         // Set up the adapter
@@ -60,6 +65,7 @@ public class C_ticket extends Fragment {
     }
 
     private void fetchTickets() {
+        progressBar.setVisibility(View.VISIBLE);
         UserCredentials2 userCredentials2 = UserCredentials2.getInstance(getActivity());
 
         String stcNo = userCredentials2.getStcNo(); // Replace with actual STC number if needed
@@ -71,6 +77,8 @@ public class C_ticket extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        progressBar.setVisibility(View.GONE);
+                        ticketListView.setVisibility(View.VISIBLE);
                         ticketList.clear(); // Clear any existing data
 
                         try {
@@ -140,6 +148,9 @@ public class C_ticket extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
+                        ticketListView.setVisibility(View.GONE);
+                        noTicketsLayout.setVisibility(View.VISIBLE);
                         error.printStackTrace();
                         // You can display an error message here if needed
                     }

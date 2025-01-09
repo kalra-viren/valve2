@@ -1,13 +1,16 @@
 package com.example.valve.Approved_flow;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +37,7 @@ public class A_ticket extends Fragment {
     private TicketAdapter ticketAdapter;
     private List<Ticket> ticketList; // List to hold tickets
     private View view;
+    private LinearLayout noTicketsLayout;
 
     public A_ticket() {
         // Required empty public constructor
@@ -47,19 +51,25 @@ public class A_ticket extends Fragment {
 
         // Initialize ListView and Ticket list
         ticketListView = view.findViewById(R.id.ticket_list_view);
+        noTicketsLayout = view.findViewById(R.id.no_tickets_layout);
         ticketList = new ArrayList<>();
 
         // Set up the adapter
-        ticketAdapter = new TicketAdapter(getActivity(), ticketList,getParentFragmentManager());
+        ticketAdapter = new TicketAdapter(getActivity(), ticketList, getParentFragmentManager());
         ticketListView.setAdapter(ticketAdapter);
 
         // Fetch tickets (this is where you would call your API)
-        fetchTickets();
+        ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+
+
+        fetchTickets(progressBar);
 
         return view;
     }
 
-    private void fetchTickets() {
+    private void fetchTickets(ProgressBar progressBar) {
+        progressBar.setVisibility(View.VISIBLE);
+
         UserCredentials2 userCredentials2 = UserCredentials2.getInstance(getActivity());
         String stcNo = userCredentials2.getStcNo(); // Replace with actual STC number if needed
         String url = APIS_URLs.fetch_tickets_url + stcNo; // API endpoint
@@ -70,6 +80,10 @@ public class A_ticket extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        ticketListView.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+
                         ticketList.clear(); // Clear any existing data
 
                         try {
@@ -86,11 +100,11 @@ public class A_ticket extends Fragment {
                                 String status = ticketObject.optString("status", "REQUESTED"); // Default status if null
                                 String tpE_name = ticketObject.optString("tpE_name", "N/A");
                                 String agency_name = ticketObject.optString("agency_name", "N/A");
-                                String name=ticketObject.optString("name","N/A");
-                                String valve_name=ticketObject.optString("valve_name","N/A");
+                                String name = ticketObject.optString("name", "N/A");
+                                String valve_name = ticketObject.optString("valve_name", "N/A");
                                 String createdAtString = ticketObject.optString("created_at", "N/A");
-                                String formattedDate="";
-                                String formattedTime="";
+                                String formattedDate = "";
+                                String formattedTime = "";
 
                                 if (!createdAtString.equals("N/A")) {
                                     // Define the input and output formats
@@ -121,7 +135,7 @@ public class A_ticket extends Fragment {
                                 int id = ticketObject.getInt("id");
 
                                 // Create a new Ticket object
-                                Ticket ticket = new Ticket(poNo, district, status, id, tpE_name, district, agency_name,name,valve_name,formattedDate,formattedTime);
+                                Ticket ticket = new Ticket(poNo, district, status, id, tpE_name, district, agency_name, name, valve_name, formattedDate, formattedTime);
 
 
                                 // Add to the list
@@ -139,6 +153,9 @@ public class A_ticket extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        ticketListView.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
+                        noTicketsLayout.setVisibility(View.VISIBLE);
                         error.printStackTrace();
                         // You can display an error message here if needed
                     }

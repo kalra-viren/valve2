@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +78,7 @@ public class Test extends Fragment {
     private List<String> L = new ArrayList<>();
     private HashMap<String, VolleyMultipartRequest.DataPart> receivedMap;
     private EditText et;
+    private ProgressBar progressBar;
 
     View view;
 //    private int d=0,a=0,b=0,r=0,f=0;
@@ -198,6 +200,21 @@ public class Test extends Fragment {
     }
 
     private void fetchQuestions() {
+        progressBar = new ProgressBar(getContext());
+        progressBar.setId(View.generateViewId());
+        LinearLayout.LayoutParams progressBarParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        progressBarParams.gravity = Gravity.CENTER; // Center the ProgressBar in the parent layout
+        progressBar.setLayoutParams(progressBarParams);
+        progressBar.setVisibility(View.GONE);  // Initially hide the ProgressBar
+
+        // Add ProgressBar to your container layout (e.g., LinearLayout or FrameLayout)
+        container.addView(progressBar);
+
+        // Step 2: Set the ProgressBar to visible before making the API request
+        progressBar.setVisibility(View.VISIBLE);
         url = APIS_URLs.fetchQuestions_url; // Replace with your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -206,11 +223,13 @@ public class Test extends Fragment {
                     public void onResponse(JSONArray response) {
                         Log.d("API Response", response.toString());
                         parseJsonResponse(response);
+                        progressBar.setVisibility(View.GONE);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         Log.e("API Error", error.toString());
                         Toast.makeText(getActivity(), "Error fetching data", Toast.LENGTH_SHORT).show();
                     }
@@ -781,6 +800,21 @@ public class Test extends Fragment {
     private void submitPermitData(PermitDataCallback callback) {
 //        uploadBitmap(receivedMap); //for uploading the images in the database
 
+        progressBar = new ProgressBar(getContext());
+        progressBar.setId(View.generateViewId());
+        LinearLayout.LayoutParams progressBarParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        progressBarParams.gravity = Gravity.CENTER; // Center the ProgressBar in the parent layout
+        progressBar.setLayoutParams(progressBarParams);
+        progressBar.setVisibility(View.GONE);  // Initially hide the ProgressBar
+
+        // Add the ProgressBar to your container layout (for example, LinearLayout)
+        container.addView(progressBar);
+
+        // Step 1: Show the ProgressBar before the API request starts
+        progressBar.setVisibility(View.VISIBLE);
         JSONObject data = new JSONObject();
         JSONObject dataWrapper = new JSONObject(); // Create a wrapper object
 
@@ -801,6 +835,7 @@ public class Test extends Fragment {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            progressBar.setVisibility(View.GONE);
                             // Handle the response from the server
                             try {
                                 String message = response.getString("message");
@@ -822,6 +857,7 @@ public class Test extends Fragment {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressBar.setVisibility(View.GONE);
                             // Handle error
                             error.printStackTrace();
                         }

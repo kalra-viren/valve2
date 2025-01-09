@@ -1,0 +1,15 @@
+<!-- res/layout/dialog_zoomable_image.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Zoomable ImageView -->
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/zoomable_dialog_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:background="@color/black" />
+</RelativeLayout>

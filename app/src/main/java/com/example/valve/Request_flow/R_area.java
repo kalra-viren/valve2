@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -55,18 +56,25 @@ public class R_area extends Fragment {
     private AutoCompleteTextView numberAutoComplete;
     private Spinner dicSpinner;
     private UserSelection userSelection;
+    private ProgressBar progress_bar_district,progress_bar_name,progress_bar_number,progress_bar_spinner,progress_bar_btn;
+
+
+
 
     public R_area() {
         // Required empty public constructor
     }
 
     private void fetchDistricts() {
+        ProgressBar progressBar = progress_bar_district;
+        progressBar.setVisibility(View.VISIBLE);
         String url = APIS_URLs.fetchDistricts_url; // API URL
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        progressBar.setVisibility(View.GONE);
                         List<String> districts = new ArrayList<>();
                         districts.add("Select District"); // Default selection
 
@@ -75,6 +83,7 @@ public class R_area extends Fragment {
                                 String districtName = response.getString(i); // Get string directly from the array
                                 districts.add(districtName);
                             } catch (Exception e) {
+
                                 e.printStackTrace();
                             }
                         }
@@ -95,6 +104,7 @@ public class R_area extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Log error details
+                        progressBar.setVisibility(View.GONE);
                         Log.e("Volley Error", error.toString());
                     }
                 });
@@ -104,6 +114,8 @@ public class R_area extends Fragment {
 
 
     private void fetchValveChambers(String districtName) {
+        ProgressBar progressBar = progress_bar_name;
+        progressBar.setVisibility(View.VISIBLE);
         String url = APIS_URLs.fetchValveChambers_url + districtName; // API URL
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -112,6 +124,7 @@ public class R_area extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        progressBar.setVisibility(View.GONE);
                         List<String> chamberNames = new ArrayList<>();
                         for (int i = 0; i < response.length(); i++) {
                             try {
@@ -128,6 +141,7 @@ public class R_area extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         // Handle error
                         error.printStackTrace();
                     }
@@ -151,6 +165,8 @@ public class R_area extends Fragment {
 
 
     private void fetchNumbersForName(String valveChamberName) {
+        ProgressBar progressBar = progress_bar_number;
+        progressBar.setVisibility(View.VISIBLE);
         String url = APIS_URLs.fetchNumbersForName_url + valveChamberName; // Ensure the URL is correctly formatted
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
@@ -159,6 +175,7 @@ public class R_area extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progressBar.setVisibility(View.GONE);
                         List<String> numbers = new ArrayList<>();
                         numbers.add("Select Valve Chamber Id");
                         numbers.add(response); // Add the retrieved ValveChamberId to the list
@@ -170,6 +187,7 @@ public class R_area extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         // Handle error
                         error.printStackTrace();
                     }
@@ -198,6 +216,8 @@ public class R_area extends Fragment {
 
 
     private void fetchDICNames() {
+        ProgressBar progressBar = progress_bar_spinner;
+        progressBar.setVisibility(View.VISIBLE);
         // Define the URL for your API endpoint
         String url = APIS_URLs.fetchDICNames_url; // Adjust the IP and port as necessary
 
@@ -208,6 +228,7 @@ public class R_area extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        progressBar.setVisibility(View.GONE);
                         List<String> dicNames = new ArrayList<>();
                         dicNames.add("Select DIC Name"); // Add a default item
 
@@ -227,6 +248,7 @@ public class R_area extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         // Handle error
                         error.printStackTrace();
                     }
@@ -244,12 +266,31 @@ public class R_area extends Fragment {
         dicSpinner.setAdapter(dicAdapter); // Set the adapter for your spinner
     }
 
+    private void resetValveNamesDropdown() {
+        List<String> defaultList = new ArrayList<>();
+        defaultList.add("Select Valve Name"); // Default option
+
+        // Update the valve names spinner (AutoCompleteTextView)
+        ArrayAdapter<String> defaultAdapter = new ArrayAdapter<>(
+                requireActivity(),
+                android.R.layout.simple_dropdown_item_1line, // Simple dropdown layout
+                defaultList
+        );
+
+        nameAutoComplete.setAdapter(defaultAdapter);
+        nameAutoComplete.setText(""); // Clear the current selection
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_r_area, container, false);
+        progress_bar_district=view.findViewById(R.id.progress_bar_district);
+        progress_bar_name=view.findViewById(R.id.progress_bar_name);
+        progress_bar_number=view.findViewById(R.id.progress_bar_number);
+        progress_bar_spinner=view.findViewById(R.id.progress_bar_spinner);
         UserCredentials2 userCredentials2 = UserCredentials2.getInstance(getActivity());
         String s = userCredentials2.getPoNumber();
 //        districtSpinner = view.findViewById(R.id.district_spinner);
@@ -263,6 +304,8 @@ public class R_area extends Fragment {
         nameAutoComplete=view.findViewById(R.id.nameAutoComplete);
         tpeSwitch = view.findViewById(R.id.tpe_switch);
         tpeStcInput = view.findViewById(R.id.tpe_stc_input);
+
+
 
         tpeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -282,12 +325,15 @@ public class R_area extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the selected district
                 String selectedDistrict = (String) parent.getItemAtPosition(position);
+                resetValveNamesDropdown();
+
 
                 // Perform actions based on the selected district
                 userSelection.setSelectedDistrict(selectedDistrict);
                 fetchValveChambers(selectedDistrict);
             }
         });
+
 
 
         nameAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -338,6 +384,8 @@ public class R_area extends Fragment {
 
                     // Check if STC Input is provided
                     if (!tpeInput.isEmpty()) {
+                        ProgressBar progressBar=view.findViewById(R.id.progress_bar_btn);
+                        progressBar.setVisibility(View.VISIBLE);
                         // Create the URL for your API endpoint
                         String url = APIS_URLs.CheckSTCNo_url + App_utils.encode(tpeInput);
 //                        String url = APIS_URLs.area_url + tpeInput;
@@ -354,6 +402,7 @@ public class R_area extends Fragment {
 
                                     @Override
                                     public void onResponse(String response) {
+                                        progressBar.setVisibility(View.GONE);
                                         // Handle the response from the server
                                         try {
                                             // Parse the response (assuming it's in JSON format)
@@ -384,6 +433,7 @@ public class R_area extends Fragment {
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
+                                        progressBar.setVisibility(View.GONE);
                                         // Handle error response
                                         Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
